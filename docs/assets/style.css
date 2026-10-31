@@ -49,7 +49,21 @@ h2{font-size:18px;margin:36px 0 14px;letter-spacing:-.01em}
 .hidden{display:none!important}.day.empty{display:none}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}.grid.two{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .vid{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.vid video{display:block;width:100%;background:#000;max-height:70vh}
+.vid{display:flex;flex-direction:column}
+.vid video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#000}
+.vid.wide{grid-column:1/-1}.vid.wide video{aspect-ratio:auto;max-height:60vh}
+.feature{padding-top:8px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.strips{grid-template-columns:1fr;margin-top:16px}
+.tag.mini{font-size:10px;padding:2px 6px;vertical-align:middle;margin-left:4px}
+.tl-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:36px 0 14px}.tl-head h2{margin:0}
+.tl-ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.g{font:inherit;font-size:13px;font-weight:600;color:var(--mut);background:transparent;border:0;border-radius:999px;padding:5px 14px;cursor:pointer}
+.g.on{background:var(--fg);color:var(--bg)}
+#period{font:inherit;font-size:13px;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;max-width:100%}
+.vtabs{display:flex;gap:8px;margin:0 0 10px}
+.vt{font:inherit;font-size:13px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.vt.on{background:var(--re);border-color:var(--re);color:#000}
 .vid figcaption{padding:10px 12px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
 .vid .lbl{font-weight:600}.meta{color:var(--mut);font-size:12px;width:100%}.meta code{font-size:11px}
 p.meta{margin:8px 0 0}
@@ -75,6 +89,7 @@ summary{cursor:pointer;font-weight:600}
  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .day{grid-template-columns:1fr;gap:8px}
  .entry{grid-template-columns:110px 1fr;gap:10px}.entry img,.entry .noimg{width:110px}
- .grid,.grid.two{grid-template-columns:1fr}
+ .grid,.grid.two,.feature .grid.two{grid-template-columns:1fr}
+ .tl-head{align-items:flex-start}
  .viewer{aspect-ratio:4/5}
 }
