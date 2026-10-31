@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T16:09:37",
+ "generated_at": "2026-10-31T16:50:35",
  "root": "/Users/alex/Desktop/Projects/Internal/Sports",
  "posted_schema": "null, or {\"platform\": \"x\", \"url\": \"...\", \"date\": \"YYYY-MM-DD\"}; kept across rebuilds (also settable in site/posted.json by id)",
  "examples": [
@@ -4711,6 +4711,26 @@
    "height": 720
   },
   {
+   "id": "realism-stephluca/stephluca_twitter.mp4",
+   "example": "realism-stephluca",
+   "project": "Realism 3D",
+   "clip": "StephLuca",
+   "file": "StephLuca_twitter.mp4",
+   "source_path": "Realism 3D/outputs/StephLuca/StephLuca_twitter.mp4",
+   "kind": "showcase",
+   "label": "Featured cut: broadcast → 3D → replay",
+   "date": "2026-10-31",
+   "mtime": "2026-10-31T15:27:38",
+   "size": 19035909,
+   "site_path": "media/realism-stephluca/StephLuca_twitter.mp4",
+   "site_size": 6550395,
+   "poster": "media/realism-stephluca/StephLuca_twitter.jpg",
+   "posted": null,
+   "duration": 25.62,
+   "width": 1280,
+   "height": 720
+  },
+  {
    "id": "realism-stephluca/stephluca_real_broadcast.mp4",
    "example": "realism-stephluca",
    "project": "Realism 3D",
@@ -4747,26 +4767,6 @@
    "poster": "media/realism-stephluca/StephLuca_real_orbit.jpg",
    "posted": null,
    "duration": 8.6,
-   "width": 1280,
-   "height": 720
-  },
-  {
-   "id": "realism-stephluca/stephluca_twitter.mp4",
-   "example": "realism-stephluca",
-   "project": "Realism 3D",
-   "clip": "StephLuca",
-   "file": "StephLuca_twitter.mp4",
-   "source_path": "Realism 3D/outputs/StephLuca/StephLuca_twitter.mp4",
-   "kind": "other",
-   "label": "Twitter",
-   "date": "2026-10-31",
-   "mtime": "2026-10-31T15:27:38",
-   "size": 19035909,
-   "site_path": "media/realism-stephluca/StephLuca_twitter.mp4",
-   "site_size": 6550395,
-   "poster": "media/realism-stephluca/StephLuca_twitter.jpg",
-   "posted": null,
-   "duration": 25.62,
    "width": 1280,
    "height": 720
   },

@@ -66,6 +66,7 @@ KINDS = {
     "_real_orbit": ("orbit", "Realism, orbit camera", 35),
     "_tactical": ("tactical", "Tactical top-down", 40),
     "_browser_tour": ("tour", "Interactive viewer tour", 50),
+    "_twitter": ("showcase", "Featured cut: broadcast → 3D → replay", 15),
     "_showcase": ("showcase", "Showcase", 60),
     "_reel": ("reel", "Reel", 61),
     "_reel30": ("reel", "Reel (30 fps)", 62),
