@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T18:20:36",
+ "generated_at": "2026-10-31T20:09:30",
  "root": "/Users/alex/Desktop/Projects/Internal/Sports",
  "posted_schema": "null, or {\"platform\": \"x\", \"url\": \"...\", \"date\": \"YYYY-MM-DD\"}; kept across rebuilds (also settable in site/posted.json by id)",
  "examples": [
@@ -81,7 +81,11 @@
    "last_output": "2026-10-31T15:27:38",
    "attribution": null,
    "copyright_note": "Source footage is NBA broadcast video; all rights belong to the NBA and its broadcast partners. Shown here only as reference for a non-commercial research demo.",
-   "posted": null
+   "posted": {
+    "platform": "x",
+    "url": "https://x.com/mirrash7/status/2116641030795862175",
+    "date": "2026-10-31"
+   }
   },
   {
    "id": "basketball-warriors1",
@@ -2835,7 +2839,11 @@
    "site_path": "media/realism-stephluca/StephLuca_twitter.mp4",
    "site_size": 6550395,
    "poster": "media/realism-stephluca/StephLuca_twitter.jpg",
-   "posted": null,
+   "posted": {
+    "platform": "x",
+    "url": "https://x.com/mirrash7/status/2116641030795862175",
+    "date": "2026-10-31"
+   },
    "duration": 25.62,
    "width": 1280,
    "height": 720
