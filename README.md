@@ -4,4 +4,4 @@ Single broadcast camera → full 3D recreation of the play (basketball, soccer, 
 
 Rebuild: `python3 build_site.py` (scans the sibling project `outputs/` folders).
 
-Footage credits: soccer clip © Selección Nacional de México (YouTube, CC BY); volleyball clip © Asian Volleyball Confederation (YouTube, CC BY). NBA footage belongs to the NBA and its broadcast partners and is shown as a non-commercial research demo.
+Footage credits: soccer clip © Selección Nacional de México (YouTube, CC BY); volleyball clip © Asian Volleyball Confederation (YouTube, CC BY); ultimate clip © Baltimate / LBV Phönix von 1903 e.V. (YouTube, CC BY). NBA and NHL footage belongs to the leagues and their broadcast partners and is shown as a non-commercial research demo.
