@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the static progress site for the Sports 3D recreation projects.
 
-Scans <ROOT>/{BBall,Soccer,Volleyball,Realism} 3D/outputs/<clip>/, transcodes media into
+Scans <ROOT>/{BBall,Soccer,Volleyball,Hockey,Ultimate,Realism} 3D/outputs/<clip>/, transcodes media into
 web-friendly H.264 MP4 + JPG posters, copies the self-contained three.js viewers, and writes
 docs/index.html (timeline by date), docs/examples/<id>.html (one page per clip x project) and
 docs/data/outputs.json (manifest).
@@ -48,6 +48,8 @@ PROJECTS = [
     ("basketball", "BBall 3D", "Basketball"),
     ("soccer", "Soccer 3D", "Soccer"),
     ("volleyball", "Volleyball 3D", "Volleyball"),
+    ("hockey", "Hockey 3D", "Hockey"),
+    ("ultimate", "Ultimate 3D", "Ultimate"),
     ("realism", "Realism 3D", "Realism"),
 ]
 SKIP_DIRS = {"dummy", "qa", "qa_vid"}  # plus anything starting with "_" / "." / "-"
@@ -98,8 +100,16 @@ SOURCE_URLS = {
         "url": "https://www.youtube.com/watch?v=mKjf1Or4wlI",
         "licence": "Creative Commons Attribution (as labelled on YouTube)",
     },
+    "mixed_dm24": {
+        "channel": "Baltimate (LBV Phönix von 1903 e.V.)",
+        "title": "Ultimate Frisbee - Mixed DM 2024 - Family Ultimate vs. TeKielas",
+        "url": "https://www.youtube.com/watch?v=hYfbZJJhdLs",
+        "licence": "Creative Commons Attribution (as labelled on YouTube)",
+    },
 }
 NBA_CLIPS = {"Warriors1", "Warriors2", "Steph", "StephLuca"}
+NHL_NOTE = ("Source footage is NHL broadcast video; all rights belong to the NHL and its broadcast "
+            "partners. Shown here only as reference for a non-commercial research demo.")
 NBA_NOTE = ("Source footage is NBA broadcast video; all rights belong to the NBA and its broadcast "
             "partners. Shown here only as reference for a non-commercial research demo.")
 
@@ -613,6 +623,8 @@ def build(force=False, dry=False):
         clip = ex["clip"]
         attribution = SOURCE_URLS.get(clip)
         copyright_note = NBA_NOTE if (clip in NBA_CLIPS and ex["base_sport"] == "Basketball") else None
+        if ex["base_sport"] == "Hockey":
+            copyright_note = NHL_NOTE
         pub = [o for o in outs if o["site_path"] and o["kind"] not in ("qa",)]
         thumb = None
         for k in ["featured"] + THUMB_PREF:
@@ -705,7 +717,7 @@ def build(force=False, dry=False):
 
 # --------------------------------------------------------------------------- HTML
 
-SPORT_CLASS = {"Basketball": "bb", "Soccer": "sc", "Volleyball": "vb", "Realism": "re"}
+SPORT_CLASS = {"Basketball": "bb", "Soccer": "sc", "Volleyball": "vb", "Hockey": "hk", "Ultimate": "ul", "Realism": "re"}
 
 
 def head(title, prefix, desc=""):
@@ -945,7 +957,7 @@ def render_index(examples, outs):
     n_renders = sum(1 for o in outs if o["site_path"] and o["kind"] not in ("original", "qa", "viewer") and not o.get("auto"))
     n_viewers = sum(1 for o in outs if o["site_path"] and o["kind"] == "viewer")
     latest = max((o["mtime"] for o in outs if o["kind"] not in TIMELINE_SKIP | {"original"}), default="")
-    sports = [s for s in ("Basketball", "Soccer", "Volleyball", "Realism") if any(e["sport"] == s for e in examples)]
+    sports = [s for s in ("Basketball", "Soccer", "Volleyball", "Hockey", "Ultimate", "Realism") if any(e["sport"] == s for e in examples)]
 
     s = [head("Sports 3D · progress", "", "Timeline of 3D sports-play recreations from single broadcast clips")]
     s.append(f"""<main class="wrap">
@@ -996,7 +1008,7 @@ def render_index(examples, outs):
 
 CSS = r"""
 :root{--bg:#0b0d12;--bg2:#12151d;--card:#161a24;--line:#232838;--fg:#e8ebf2;--mut:#98a1b3;--acc:#ffb347;
---bb:#ff7a3d;--sc:#3ddc84;--vb:#4cc3ff;--re:#c58bff;--r:14px}
+--bb:#ff7a3d;--sc:#3ddc84;--vb:#4cc3ff;--hk:#e8eef7;--ul:#ffd23d;--re:#c58bff;--r:14px}
 *{box-sizing:border-box}
 html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
@@ -1014,6 +1026,8 @@ h2{font-size:18px;margin:36px 0 14px;letter-spacing:-.01em}
 .tag.bb{background:color-mix(in srgb,var(--bb) 22%,transparent);color:var(--bb)}
 .tag.sc{background:color-mix(in srgb,var(--sc) 22%,transparent);color:var(--sc)}
 .tag.vb{background:color-mix(in srgb,var(--vb) 22%,transparent);color:var(--vb)}
+.tag.hk{background:color-mix(in srgb,var(--hk) 22%,transparent);color:var(--hk)}
+.tag.ul{background:color-mix(in srgb,var(--ul) 22%,transparent);color:var(--ul)}
 .tag.re{background:color-mix(in srgb,var(--re) 22%,transparent);color:var(--re)}
 .tag.ghost{background:transparent;border:1px solid var(--line);color:var(--mut)}
 .badge.posted{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#fff;color:#000}
@@ -1024,7 +1038,7 @@ h2{font-size:18px;margin:36px 0 14px;letter-spacing:-.01em}
 .f{font:inherit;font-size:13px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
 .f.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .f.bb.on{background:var(--bb);border-color:var(--bb)}.f.sc.on{background:var(--sc);border-color:var(--sc)}
-.f.vb.on{background:var(--vb);border-color:var(--vb)}.f.re.on{background:var(--re);border-color:var(--re)}
+.f.vb.on{background:var(--vb);border-color:var(--vb)}.f.hk.on{background:var(--hk);border-color:var(--hk);color:#000}.f.ul.on{background:var(--ul);border-color:var(--ul);color:#000}.f.re.on{background:var(--re);border-color:var(--re)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;color:var(--fg);transition:transform .15s,border-color .15s}
 .card:hover{transform:translateY(-2px);border-color:#3a4155;text-decoration:none}
@@ -1071,7 +1085,7 @@ p.meta{margin:8px 0 0}
 .load small{font-weight:500;font-size:11px;opacity:.75}
 .related{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-weight:600;font-size:13px}
-.chip.re{color:var(--re)}.chip.bb{color:var(--bb)}.chip.sc{color:var(--sc)}.chip.vb{color:var(--vb)}
+.chip.re{color:var(--re)}.chip.bb{color:var(--bb)}.chip.sc{color:var(--sc)}.chip.vb{color:var(--vb)}.chip.hk{color:var(--hk)}.chip.ul{color:var(--ul)}
 .credit{margin-top:14px;padding:10px 14px;border-radius:10px;background:#141a14;border:1px solid #284028;font-size:13px;color:#cfe3cf;max-width:860px}
 .credit.warn{background:#1c1712;border-color:#43361f;color:#e6d5b8}
 details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin-top:16px}
