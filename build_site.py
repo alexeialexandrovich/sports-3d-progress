@@ -682,6 +682,10 @@ def build(force=False, dry=False):
             produced.add(rp)
     (DOCS / "index.html").write_text(render_index(manifest_ex, manifest_out))
     produced.add("index.html")
+    try_src = HERE / "try_template.html"
+    if try_src.exists():
+        (DOCS / "try.html").write_text(try_src.read_text())
+        produced.add("try.html")
     for page in ["index.html"] + [e["page"] for e in manifest_ex]:
         for ref in broken_refs(DOCS / page):
             warnings.append(f"{page}: broken link {ref}")
@@ -984,6 +988,7 @@ def render_index(examples, outs):
     <div><b>{n_viewers}</b><span>3D viewers</span></div>
     <div><b>{esc(dt.datetime.fromisoformat(latest).strftime('%b %-d') if latest else '–')}</b><span>latest output</span></div>
   </div>
+  <p class="try-cta"><a class="btn-try" href="try.html">Try it: upload your own clip →</a></p>
   <div class="filters" role="group" aria-label="Filter by sport">
     <button class="f on" data-f="all">All</button>
     {''.join(f'<button class="f {SPORT_CLASS[x]}" data-f="{x}">{x}</button>' for x in sports)}
@@ -1026,6 +1031,7 @@ CSS = r"""
 html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.try-cta{margin:14px 0 4px}.btn-try{display:inline-block;background:var(--acc);color:#111;font-weight:600;padding:9px 16px;border-radius:10px}.btn-try:hover{text-decoration:none;filter:brightness(1.08)}
 code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--mut)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 16px 48px}
 .top{position:sticky;top:0;z-index:5;background:rgba(11,13,18,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 16px}
