@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T16:08:46",
+ "generated_at": "2026-11-11T20:09:33",
  "root": "/Users/alex/Desktop/Projects/Internal/Sports",
  "posted_schema": "null, or {\"platform\": \"x\", \"url\": \"...\", \"date\": \"YYYY-MM-DD\"}; kept across rebuilds (also settable in site/posted.json by id)",
  "examples": [
